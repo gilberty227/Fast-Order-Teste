@@ -17,6 +17,8 @@ jobs:
       # You can test your matrix by printing the current dotnet version
       - name: Install dependencies
         run: dotnet restore
+      - name: Select File Project
+        run: dotnet publish Fast-Order.sln -c Release -o out
       - name: Display dotnet version
         run: dotnet --version
       - name: Build
