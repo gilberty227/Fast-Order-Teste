@@ -1,0 +1,25 @@
+name: pipelines
+
+on: 
+  push:
+    branches: [ "main" ]
+    
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+      # You can test your matrix by printing the current dotnet version
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Display dotnet version
+        run: dotnet --version
+      - name: Build
+        run: dotnet build --no-restore
+      - name: Test with the dotnet 
+        run: dotnet test --no-build --verbosity normal
